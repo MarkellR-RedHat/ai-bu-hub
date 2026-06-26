@@ -116,14 +116,15 @@
   .role-bar {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
     padding: 14px 20px; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
+    display: flex; align-items: center; gap: 10px;
+    overflow-x: auto; -webkit-overflow-scrolling: touch;
   }
-  .role-bar-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .role-bar-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; }
   .role-btn {
     font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 600;
     padding: 5px 14px; border-radius: var(--radius-pill);
     border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
-    cursor: pointer; transition: all 0.15s; white-space: nowrap;
+    cursor: pointer; transition: all 0.15s; white-space: nowrap; flex-shrink: 0;
   }
   .role-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
   .role-btn.active { background: var(--accent-purple); color: #fff; border-color: var(--accent-purple); }
