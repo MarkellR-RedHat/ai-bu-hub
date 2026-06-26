@@ -116,8 +116,8 @@
   .role-bar {
     background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
     padding: 14px 20px; margin-bottom: 20px;
-    display: flex; align-items: center; gap: 10px;
-    overflow-x: auto; -webkit-overflow-scrolling: touch;
+    display: flex; align-items: center; gap: 10px; flex-wrap: wrap;
+    overflow: visible;
   }
   .role-bar-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; flex-shrink: 0; }
   .role-btn {
