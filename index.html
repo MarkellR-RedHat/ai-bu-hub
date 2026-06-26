@@ -7,12 +7,12 @@
 <meta name="description" content="Productivity tools for the Red Hat AI Business Unit. Claude Code commands, MCP servers, prompt libraries, and developer tools.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Cdefs%3E%3ClinearGradient id='g' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0%25' stop-color='%23ee0000'/%3E%3Cstop offset='100%25' stop-color='%239b4d9b'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='64' height='64' rx='14' fill='url(%23g)'/%3E%3Ctext x='32' y='26' font-family='system-ui,-apple-system,sans-serif' font-size='16' font-weight='900' fill='white' text-anchor='middle' dominant-baseline='middle'%3EAI%3C/text%3E%3Ctext x='32' y='44' font-family='system-ui,-apple-system,sans-serif' font-size='14' font-weight='700' fill='rgba(255,255,255,0.85)' text-anchor='middle' dominant-baseline='middle'%3EBU%3C/text%3E%3C/svg%3E">
 <meta property="og:title" content="AI BU Hub | Red Hat">
-<meta property="og:description" content="Productivity tools for the Red Hat AI Business Unit. 100+ Claude Code commands, MCP servers, prompt libraries, and developer tools.">
+<meta property="og:description" content="Productivity tools for the Red Hat AI Business Unit. 140+ Claude Code commands, MCP servers, prompt libraries, and developer tools.">
 <meta property="og:type" content="website">
 <meta property="og:url" content="https://markellr-redhat.github.io/ai-bu-hub/">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="AI BU Hub | Red Hat">
-<meta name="twitter:description" content="100+ productivity commands for the Red Hat AI Business Unit.">
+<meta name="twitter:description" content="140+ productivity commands for the Red Hat AI Business Unit.">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -460,7 +460,7 @@
 var TOOLS = [
   {
     name: "Claude Code Commands",
-    desc: "The Swiss Army knife. Release notes, changelogs, demo prep, customer explanations, competitive snapshots, blog-from-PR, doc generation, project retrospectives, and a 'what should I work on next' prioritizer.",
+    desc: "Release notes, changelogs, demo prep, customer explanations, competitive snapshots, blog-from-PR, doc generation, project retrospectives, and a 'what should I work on next' prioritizer.",
     repo: "ai-bu-claude-commands",
     type: "command",
     typeBadge: "command",
@@ -474,7 +474,7 @@ var TOOLS = [
   },
   {
     name: "MCP Server Kit",
-    desc: "One-command setup for GitHub, Fetch, Filesystem, Brave Search, Memory, Kubernetes, and database MCP servers. Interactive installer detects your stack and configures only what you need.",
+    desc: "One-command setup for 13 MCP servers: GitHub, Fetch, Filesystem, Brave Search, Memory, Postgres, and more. Interactive installer detects your stack and configures only what you need.",
     repo: "ai-bu-mcp-server-kit",
     type: "config",
     typeBadge: "config",
@@ -488,7 +488,7 @@ var TOOLS = [
   },
   {
     name: "CLAUDE.md Templates",
-    desc: "Drop-in CLAUDE.md files for Python, Go, Rust, Kubernetes, AI/ML, Helm, FastAPI, Operator SDK, data pipelines, CLIs, and more. Each template is written by someone who has spent years in that domain.",
+    desc: "14 drop-in CLAUDE.md files for Python, Go, Rust, Kubernetes, AI/ML, Helm, FastAPI, Operator SDK, data pipelines, CLIs, and more. Each template tells Claude exactly how your project works.",
     repo: "ai-bu-claude-md-templates",
     type: "config",
     typeBadge: "config",
@@ -541,7 +541,7 @@ var TOOLS = [
   },
   {
     name: "Review as Persona",
-    desc: "Uncannily accurate persona reviews. CTO, SRE, junior dev, security engineer, and 10+ more. Debate mode where two personas argue about your content. Red team and empathy map modes.",
+    desc: "Get the feedback five different readers would give you, without chasing five different people. CTO, SRE, junior dev, security engineer, and 10+ more. Debate, red team, and empathy map modes.",
     repo: "ai-bu-review-as-persona",
     type: "command",
     typeBadge: "command",
@@ -555,7 +555,7 @@ var TOOLS = [
   },
   {
     name: "Red Hat Style Checker",
-    desc: "Surgical precision style checking. 100+ product names, batch mode for whole directories, git diff mode for pre-PR checks, style learning, score comparison, and a comprehensive reference guide.",
+    desc: "250+ product names with correct capitalization, batch mode for whole directories, git diff mode for pre-PR checks, style learning, score comparison, and full Red Hat style reference.",
     repo: "ai-bu-style-checker",
     type: "command",
     typeBadge: "command",
@@ -596,7 +596,7 @@ var TOOLS = [
   },
   {
     name: "Prompt Library",
-    desc: "40+ expert-engineered prompts across content, research, engineering, communication, strategy, leadership, and analysis. Multi-step prompt chains and a prompt engineering guide.",
+    desc: "35+ engineered prompts for the work you already do, tuned to produce output you actually ship. Covers content, research, engineering, communication, strategy, and multi-step prompt chains.",
     repo: "ai-bu-prompt-library",
     type: "library",
     typeBadge: "library",
@@ -609,14 +609,14 @@ var TOOLS = [
   },
   {
     name: "Git Productivity Kit",
-    desc: "30+ aliases and functions you will never work without again. Smart PR workflows, investigation tools, team dashboards, stale branch cleanup, conventional commit hooks, and shell completion.",
+    desc: "27 aliases and functions that save roughly 45 minutes per day. Smart PR workflows, investigation tools, team dashboards, stale branch cleanup, conventional commit hooks, and shell completion.",
     repo: "ai-bu-git-productivity",
     type: "shell",
     typeBadge: "shell",
     category: "Developer Tools",
     tags: ["git", "aliases", "shell", "hooks", "pr", "dashboard", "conventional-commits"],
     icon: "🔀",
-    commands: 30,
+    commands: 27,
     popular: true,
     cmdList: ["gs", "glog", "gwip", "gunwip", "pr-create", "pr-ready", "pr-cleanup", "pr-stack", "gwho", "gwhen", "gfind", "gteam", "gstale", "greview"],
     roles: ["engineer", "devrel"]
@@ -650,7 +650,7 @@ var TOOLS = [
   },
   {
     name: "Onboarding Kit",
-    desc: "The best setup experience you have ever had. Interactive installer with progress bars, health check dashboard, update mechanism, skill-based tool selection, and a 'your first 10 minutes' guide.",
+    desc: "One script installs all 17 tools. Interactive installer with progress bars, health check dashboard, update mechanism, skill-based tool selection, and a cheatsheet with all 122 commands.",
     repo: "ai-bu-onboarding-kit",
     type: "kit",
     typeBadge: "kit",
@@ -690,7 +690,7 @@ var TOOLS = [
   },
   {
     name: "Speed Reader",
-    desc: "Summaries so insightful people share them instead of the original paper. Verdict mode, citation chain analysis, 'how would we use this' implementation plans, and methodology bias detection.",
+    desc: "Read 15 papers in the time it takes to skim three. Verdict mode, citation chain analysis, 'how would we use this' implementation plans, comparative reads, and methodology bias detection.",
     repo: "ai-bu-speed-reader",
     type: "command",
     typeBadge: "command",
