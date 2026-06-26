@@ -4,48 +4,78 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>AI BU Hub | Red Hat</title>
+<meta name="description" content="Productivity tools for the Red Hat AI Business Unit. Claude Code commands, MCP servers, prompt libraries, and developer tools.">
 <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 200 145'%3E%3Cg fill='%23ee0000'%3E%3Cpath d='M127.47 83.49c12.51 0 30.61-2.58 30.61-17.46a14 14 0 0 0-.31-3.42l-7.45-32.36c-1.72-7.12-3.23-10.35-15.73-16.6C124.89 8.69 103.76.5 97.51.5 91.69.5 90 8 83.06 8c-6.68 0-11.64-5.6-17.89-5.6-6 0-9.91 4.09-12.93 12.5 0 0-8.41 23.72-9.49 27.16A6.43 6.43 0 0 0 42.53 44c0 9.22 36.3 39.45 84.94 39.45M160 72.07c1.73 8.19 1.73 9.05 1.73 10.13 0 14-15.74 21.77-36.43 21.77C78.54 104 37.58 76.6 37.58 58.49a18.45 18.45 0 0 1 1.51-7.33C22.27 52 .5 55 .5 74.22c0 31.48 74.59 70.28 133.65 70.28 45.28 0 56.7-20.48 56.7-36.65 0-12.72-11-27.16-30.83-35.78'/%3E%3C/g%3E%3C/svg%3E">
 <link href="https://fonts.googleapis.com/css2?family=Red+Hat+Display:wght@400;500;600;700;800;900&family=Red+Hat+Text:wght@400;500;600;700&family=Red+Hat+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <style>
   *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
   ::selection { background: #d4a8d4; color: #4a1a4a; }
 
+  :root {
+    --bg: #f7f7f8;
+    --surface: #fff;
+    --border: #e4e4e7;
+    --text: #212121;
+    --text-secondary: #666;
+    --text-muted: #999;
+    --text-faint: #bbb;
+    --text-ghost: #ccc;
+    --accent-red: #ee0000;
+    --accent-red-dark: #cc0000;
+    --accent-purple: #9b4d9b;
+    --accent-blue: #1a5fb4;
+    --accent-blue-light: #3584e4;
+    --accent-green: #2e7d32;
+    --accent-green-light: #43a047;
+    --accent-orange: #e65100;
+    --accent-orange-light: #f57c00;
+    --shadow-sm: 0 1px 3px rgba(0,0,0,0.02);
+    --shadow-md: 0 4px 12px rgba(0,0,0,0.06);
+    --shadow-lg: 0 8px 24px rgba(0,0,0,0.1);
+    --shadow-xl: 0 12px 36px rgba(0,0,0,0.15);
+    --radius-sm: 8px;
+    --radius-md: 12px;
+    --radius-lg: 16px;
+    --radius-pill: 20px;
+  }
+
   body {
     font-family: 'Red Hat Text', sans-serif;
-    background: #f7f7f8;
-    color: #212121;
+    background: var(--bg);
+    color: var(--text);
     min-height: 100vh;
+    -webkit-font-smoothing: antialiased;
   }
 
   /* NAV */
-  .nav { background: #fff; border-bottom: 1px solid #e4e4e7; padding: 0 28px; position: sticky; top: 0; z-index: 50; }
-  .nav-inner { max-width: 1100px; margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; }
-  .nav-brand { font-family: 'Red Hat Display', sans-serif; font-weight: 900; font-size: 1.15rem; color: #212121; text-decoration: none; display: flex; align-items: center; gap: 8px; }
-  .nav-brand span { color: #ee0000; }
+  .nav { background: var(--surface); border-bottom: 1px solid var(--border); padding: 0 28px; position: sticky; top: 0; z-index: 50; backdrop-filter: blur(10px); background: rgba(255,255,255,0.92); }
+  .nav-inner { max-width: 1200px; margin: 0 auto; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+  .nav-brand { font-family: 'Red Hat Display', sans-serif; font-weight: 900; font-size: 1.15rem; color: var(--text); text-decoration: none; display: flex; align-items: center; gap: 8px; }
+  .nav-brand span { color: var(--accent-red); }
   .nav-brand .red-hat-logo { height: 20px; width: auto; }
   .nav-links { display: flex; align-items: center; gap: 10px; }
-  .nav-link { font-family: 'Red Hat Display', sans-serif; font-size: 0.78rem; font-weight: 600; color: #666; text-decoration: none; padding: 6px 12px; border-radius: 8px; transition: all 0.15s; }
-  .nav-link:hover { color: #212121; background: #f0f0f0; }
-  .nav-link--cta { background: #ee0000; color: #fff; }
-  .nav-link--cta:hover { background: #cc0000; color: #fff; }
-  .nav-kbd { font-family: 'Red Hat Mono', monospace; font-size: 0.6rem; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 1px 5px; color: #999; margin-left: 4px; }
+  .nav-link { font-family: 'Red Hat Display', sans-serif; font-size: 0.78rem; font-weight: 600; color: var(--text-secondary); text-decoration: none; padding: 6px 12px; border-radius: var(--radius-sm); transition: all 0.15s; }
+  .nav-link:hover { color: var(--text); background: #f0f0f0; }
+  .nav-link--cta { background: var(--accent-red); color: #fff !important; }
+  .nav-link--cta:hover { background: var(--accent-red-dark); color: #fff !important; }
+  .nav-kbd { font-family: 'Red Hat Mono', monospace; font-size: 0.6rem; background: #f0f0f0; border: 1px solid #ddd; border-radius: 4px; padding: 1px 5px; color: var(--text-muted); margin-left: 4px; }
 
   /* LAYOUT */
-  .page { max-width: 1100px; margin: 0 auto; padding: 32px 28px 80px; }
+  .page { max-width: 1200px; margin: 0 auto; padding: 32px 28px 80px; }
 
   /* HERO + STATS */
-  .hero { margin-bottom: 20px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
-  .hero-text h1 { font-family: 'Red Hat Display', sans-serif; font-size: 2rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
-  .hero-text p { color: #888; font-size: 0.86rem; max-width: 550px; line-height: 1.5; }
-  .stats { display: flex; gap: 20px; }
-  .stat { text-align: center; }
-  .stat-num { font-family: 'Red Hat Display', sans-serif; font-size: 1.6rem; font-weight: 900; color: #212121; line-height: 1; }
-  .stat-label { font-size: 0.65rem; color: #999; text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; }
+  .hero { margin-bottom: 24px; display: flex; align-items: flex-end; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+  .hero-text h1 { font-family: 'Red Hat Display', sans-serif; font-size: 2.2rem; font-weight: 900; letter-spacing: -0.5px; margin-bottom: 4px; }
+  .hero-text p { color: var(--text-muted); font-size: 0.88rem; max-width: 550px; line-height: 1.5; }
+  .stats { display: flex; gap: 24px; }
+  .stat { text-align: center; padding: 8px 16px; background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md); }
+  .stat-num { font-family: 'Red Hat Display', sans-serif; font-size: 1.8rem; font-weight: 900; color: var(--text); line-height: 1; }
+  .stat-label { font-size: 0.62rem; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; font-weight: 600; margin-top: 2px; }
 
   /* START HERE BANNER */
   .start-here {
-    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 50%, #1a1a2e 100%);
-    border-radius: 14px; padding: 22px 26px; margin-bottom: 24px;
+    background: linear-gradient(135deg, #1a1a2e 0%, #2d1b3d 40%, #1a2840 100%);
+    border-radius: var(--radius-lg); padding: 24px 28px; margin-bottom: 20px;
     display: flex; align-items: center; justify-content: space-between; gap: 20px;
     position: relative; overflow: hidden;
   }
@@ -53,49 +83,63 @@
     content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px;
     background: linear-gradient(90deg, #ee0000, #9b4d9b, #3584e4);
   }
-  .start-here-text { flex: 1; }
-  .start-here-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: #9b4d9b; margin-bottom: 6px; }
-  .start-here-title { font-family: 'Red Hat Display', sans-serif; font-size: 1.15rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
+  .start-here::after {
+    content: ''; position: absolute; right: -40px; top: -40px; width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(155,77,155,0.12) 0%, transparent 70%);
+    pointer-events: none;
+  }
+  .start-here-text { flex: 1; z-index: 1; }
+  .start-here-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.62rem; font-weight: 700; text-transform: uppercase; letter-spacing: 1.5px; color: var(--accent-purple); margin-bottom: 6px; }
+  .start-here-title { font-family: 'Red Hat Display', sans-serif; font-size: 1.2rem; font-weight: 800; color: #fff; margin-bottom: 4px; }
   .start-here-desc { font-size: 0.8rem; color: #aaa; line-height: 1.45; }
-  .start-here-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; }
+  .start-here-actions { display: flex; gap: 10px; align-items: center; flex-shrink: 0; z-index: 1; }
   .install-snippet {
     font-family: 'Red Hat Mono', monospace; font-size: 0.72rem;
     background: rgba(255,255,255,0.08); border: 1px solid rgba(255,255,255,0.12);
-    color: #ccc; padding: 8px 14px; border-radius: 8px;
+    color: #ccc; padding: 8px 14px; border-radius: var(--radius-sm);
     display: flex; align-items: center; gap: 10px; cursor: pointer;
     transition: all 0.15s; position: relative;
   }
   .install-snippet:hover { background: rgba(255,255,255,0.12); border-color: rgba(255,255,255,0.2); }
-  .install-snippet .copy-icon { color: #9b4d9b; font-size: 0.85rem; }
-  .install-snippet.copied { border-color: #43a047; }
-  .install-snippet.copied .copy-icon { color: #43a047; }
-  .start-here-btn {
-    font-family: 'Red Hat Display', sans-serif; font-size: 0.78rem; font-weight: 700;
-    background: #ee0000; color: #fff; border: none; border-radius: 8px;
-    padding: 10px 20px; cursor: pointer; text-decoration: none; transition: background 0.15s;
-    white-space: nowrap;
+  .install-snippet .copy-icon { color: var(--accent-purple); font-size: 0.85rem; }
+  .install-snippet.copied { border-color: var(--accent-green-light); }
+  .install-snippet.copied .copy-icon { color: var(--accent-green-light); }
+
+  /* ROLE SELECTOR */
+  .role-bar {
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 14px 20px; margin-bottom: 20px;
+    display: flex; align-items: center; gap: 12px; flex-wrap: wrap;
   }
-  .start-here-btn:hover { background: #cc0000; }
+  .role-bar-label { font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 700; color: var(--text-muted); text-transform: uppercase; letter-spacing: 0.5px; white-space: nowrap; }
+  .role-btn {
+    font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 600;
+    padding: 5px 14px; border-radius: var(--radius-pill);
+    border: 1px solid var(--border); background: var(--surface); color: var(--text-secondary);
+    cursor: pointer; transition: all 0.15s; white-space: nowrap;
+  }
+  .role-btn:hover { border-color: var(--accent-purple); color: var(--accent-purple); }
+  .role-btn.active { background: var(--accent-purple); color: #fff; border-color: var(--accent-purple); }
 
   /* CONTROLS */
   .controls { display: flex; align-items: center; gap: 10px; margin-bottom: 20px; flex-wrap: wrap; }
 
-  .search-wrap { flex: 1; min-width: 200px; max-width: 360px; position: relative; }
+  .search-wrap { flex: 1; min-width: 200px; max-width: 380px; position: relative; }
   .search-box {
     width: 100%;
-    padding: 8px 14px 8px 34px;
-    border: 1px solid #e4e4e7; border-radius: 10px;
+    padding: 9px 14px 9px 36px;
+    border: 1px solid var(--border); border-radius: 10px;
     font-family: 'Red Hat Text', sans-serif; font-size: 0.82rem;
-    background: #fff url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 11px center no-repeat;
+    background: var(--surface) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='15' height='15' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cline x1='21' y1='21' x2='16.65' y2='16.65'/%3E%3C/svg%3E") 12px center no-repeat;
     outline: none; transition: border-color 0.15s, box-shadow 0.15s;
   }
-  .search-box:focus { border-color: #9b4d9b; box-shadow: 0 0 0 3px rgba(155,77,155,0.1); }
-  .search-box::placeholder { color: #bbb; }
+  .search-box:focus { border-color: var(--accent-purple); box-shadow: 0 0 0 3px rgba(155,77,155,0.1); }
+  .search-box::placeholder { color: var(--text-faint); }
   .search-hint {
     position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
     font-family: 'Red Hat Mono', monospace; font-size: 0.58rem;
     background: #f5f5f5; border: 1px solid #e0e0e0; border-radius: 4px;
-    padding: 1px 5px; color: #bbb; pointer-events: none;
+    padding: 1px 5px; color: var(--text-faint); pointer-events: none;
     transition: opacity 0.15s;
   }
   .search-box:focus ~ .search-hint { opacity: 0; }
@@ -103,43 +147,62 @@
   .filter-group { display: flex; gap: 5px; flex-wrap: wrap; }
   .filter-btn {
     font-family: 'Red Hat Display', sans-serif; font-size: 0.68rem; font-weight: 600;
-    padding: 5px 12px; border-radius: 20px;
-    border: 1px solid #e4e4e7; background: #fff; color: #777;
+    padding: 5px 12px; border-radius: var(--radius-pill);
+    border: 1px solid var(--border); background: var(--surface); color: #777;
     cursor: pointer; transition: all 0.15s; text-transform: uppercase; letter-spacing: 0.4px;
   }
   .filter-btn:hover { border-color: #ccc; color: #333; }
-  .filter-btn.active { background: #212121; color: #fff; border-color: #212121; }
+  .filter-btn.active { background: var(--text); color: #fff; border-color: var(--text); }
   .filter-btn .filter-count { font-size: 0.58rem; opacity: 0.6; margin-left: 2px; }
+
+  .view-toggles { display: flex; gap: 2px; background: #f0f0f0; border-radius: var(--radius-sm); padding: 2px; }
+  .view-btn {
+    padding: 5px 8px; border: none; background: transparent; cursor: pointer;
+    border-radius: 6px; color: var(--text-muted); font-size: 0.8rem; transition: all 0.15s;
+    line-height: 1; display: flex; align-items: center;
+  }
+  .view-btn.active { background: var(--surface); color: var(--text); box-shadow: 0 1px 2px rgba(0,0,0,0.08); }
 
   .sort-select {
     font-family: 'Red Hat Text', sans-serif; font-size: 0.78rem;
-    padding: 7px 26px 7px 10px; border: 1px solid #e4e4e7; border-radius: 10px;
-    background: #fff; color: #555; cursor: pointer; outline: none;
+    padding: 7px 26px 7px 10px; border: 1px solid var(--border); border-radius: 10px;
+    background: var(--surface); color: #555; cursor: pointer; outline: none;
     appearance: none;
     background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='11' height='11' viewBox='0 0 24 24' fill='none' stroke='%23999' stroke-width='2'%3E%3Cpolyline points='6 9 12 15 18 9'/%3E%3C/svg%3E");
     background-repeat: no-repeat; background-position: right 9px center;
   }
 
-  .results-count { font-size: 0.72rem; color: #bbb; margin-left: auto; font-weight: 500; }
+  .results-count { font-size: 0.72rem; color: var(--text-faint); margin-left: auto; font-weight: 500; }
 
   /* GRID */
-  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(255px, 1fr)); gap: 14px; }
+  .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 14px; }
+  .grid--list { grid-template-columns: 1fr; }
 
   /* CARDS */
   .card {
-    background: #fff; border: 1px solid #e4e4e7; border-radius: 12px;
-    padding: 16px 16px 14px; box-shadow: 0 1px 3px rgba(0,0,0,0.02);
+    background: var(--surface); border: 1px solid var(--border); border-radius: var(--radius-md);
+    padding: 18px 18px 14px; box-shadow: var(--shadow-sm);
     transition: box-shadow 0.25s, transform 0.25s, border-color 0.25s;
     display: flex; flex-direction: column;
     position: relative; overflow: hidden; text-decoration: none; color: inherit; cursor: pointer;
-    animation: cardIn 0.3s ease both;
+    animation: cardIn 0.35s ease both;
   }
   .card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; transition: height 0.2s; }
-  .card:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.1); transform: translateY(-3px); border-color: transparent; }
+  .card:hover { box-shadow: var(--shadow-xl); transform: translateY(-4px); border-color: transparent; }
   .card:hover::before { height: 4px; }
+  .card:active { transform: translateY(-2px); }
+
+  .grid--list .card { flex-direction: row; align-items: center; gap: 16px; padding: 14px 18px; }
+  .grid--list .card-top { margin-bottom: 0; }
+  .grid--list .card-body { flex: 1; display: flex; align-items: center; gap: 16px; }
+  .grid--list .card-title { margin-bottom: 0; font-size: 0.85rem; }
+  .grid--list .card-desc { margin-bottom: 0; flex: 1; }
+  .grid--list .card-tags { display: none; }
+  .grid--list .card-commands-list { display: none; }
+  .grid--list .card-footer { border-top: none; padding-top: 0; }
 
   @keyframes cardIn {
-    from { opacity: 0; transform: translateY(8px); }
+    from { opacity: 0; transform: translateY(10px); }
     to { opacity: 1; transform: translateY(0); }
   }
 
@@ -149,8 +212,8 @@
   .card--research::before { background: linear-gradient(90deg, #2e7d32, #43a047); }
   .card--content::before { background: linear-gradient(90deg, #e65100, #f57c00); }
 
-  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 8px; }
-  .card-icon { width: 32px; height: 32px; border-radius: 8px; display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 0.95rem; }
+  .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 10px; }
+  .card-icon { width: 34px; height: 34px; border-radius: var(--radius-sm); display: flex; align-items: center; justify-content: center; flex-shrink: 0; font-size: 1rem; }
   .card-icon--commands { background: #f3e8f3; }
   .card-icon--workflow { background: #e8f0fb; }
   .card-icon--setup { background: #fff0f0; }
@@ -164,36 +227,112 @@
   .badge--config { background: #fff0f0; color: #cc0000; border: 1px solid #f0c0c0; }
   .badge--library { background: #e8f5e9; color: #2e7d32; border: 1px solid #a5d6a7; }
   .badge--kit { background: #fff3e0; color: #e65100; border: 1px solid #ffcc80; }
-  .cmd-count { font-family: 'Red Hat Mono', monospace; font-size: 0.55rem; color: #999; background: #f5f5f5; padding: 2px 6px; border-radius: 8px; }
+  .cmd-count { font-family: 'Red Hat Mono', monospace; font-size: 0.55rem; color: var(--text-muted); background: #f5f5f5; padding: 2px 6px; border-radius: var(--radius-sm); }
+  .badge--popular { background: #fff8e1; color: #f9a825; border: 1px solid #ffe082; }
 
-  .card-title { font-family: 'Red Hat Display', sans-serif; font-size: 0.88rem; font-weight: 800; margin-bottom: 4px; color: #212121; line-height: 1.3; }
-  .card-desc { font-size: 0.75rem; color: #666; line-height: 1.5; flex: 1; margin-bottom: 10px; }
-  .card-desc mark { background: #fff3cd; color: #212121; border-radius: 2px; padding: 0 2px; }
-  .card-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 10px; }
-  .card-tag { font-size: 0.58rem; padding: 1px 6px; border-radius: 4px; background: #f5f5f5; color: #999; font-weight: 500; }
+  .card-title { font-family: 'Red Hat Display', sans-serif; font-size: 0.9rem; font-weight: 800; margin-bottom: 6px; color: var(--text); line-height: 1.3; }
+  .card-desc { font-size: 0.76rem; color: var(--text-secondary); line-height: 1.55; flex: 1; margin-bottom: 10px; }
+  .card-desc mark { background: #fff3cd; color: var(--text); border-radius: 2px; padding: 0 2px; }
+  .card-tags { display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 8px; }
+  .card-tag { font-size: 0.58rem; padding: 1px 6px; border-radius: 4px; background: #f5f5f5; color: var(--text-muted); font-weight: 500; }
+
+  /* Command preview list on cards */
+  .card-commands-list {
+    display: flex; flex-wrap: wrap; gap: 3px; margin-bottom: 10px; padding: 8px;
+    background: #fafafa; border-radius: var(--radius-sm); border: 1px solid #f0f0f0;
+    max-height: 0; overflow: hidden; opacity: 0;
+    transition: max-height 0.3s ease, opacity 0.2s ease, padding 0.3s ease, margin 0.3s ease;
+    padding: 0 8px; margin-bottom: 0;
+  }
+  .card:hover .card-commands-list { max-height: 200px; opacity: 1; padding: 8px; margin-bottom: 10px; }
+  .card-cmd {
+    font-family: 'Red Hat Mono', monospace; font-size: 0.6rem; font-weight: 500;
+    padding: 2px 6px; border-radius: 4px;
+    background: var(--surface); border: 1px solid var(--border); color: var(--accent-purple);
+  }
 
   .card-footer { display: flex; align-items: center; justify-content: space-between; padding-top: 8px; border-top: 1px solid #f0f0f0; }
-  .card-category { font-family: 'Red Hat Display', sans-serif; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: #bbb; }
+  .card-category { font-family: 'Red Hat Display', sans-serif; font-size: 0.58rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-faint); }
   .card-link { font-family: 'Red Hat Display', sans-serif; font-size: 0.68rem; font-weight: 600; display: flex; align-items: center; gap: 3px; }
-  .card--commands .card-link { color: #9b4d9b; }
-  .card--workflow .card-link { color: #1a5fb4; }
-  .card--setup .card-link { color: #cc0000; }
-  .card--research .card-link { color: #2e7d32; }
-  .card--content .card-link { color: #e65100; }
+  .card--commands .card-link { color: var(--accent-purple); }
+  .card--workflow .card-link { color: var(--accent-blue); }
+  .card--setup .card-link { color: var(--accent-red); }
+  .card--research .card-link { color: var(--accent-green); }
+  .card--content .card-link { color: var(--accent-orange); }
   .card-link-arrow { font-size: 0.85rem; transition: transform 0.2s; }
   .card:hover .card-link-arrow { transform: translateX(3px); }
 
-  .no-results { text-align: center; padding: 60px 20px; color: #999; font-size: 0.9rem; }
-  .no-results h3 { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: #666; margin-bottom: 6px; }
+  .no-results { text-align: center; padding: 60px 20px; color: var(--text-muted); font-size: 0.9rem; }
+  .no-results h3 { font-family: 'Red Hat Display', sans-serif; font-weight: 800; color: var(--text-secondary); margin-bottom: 6px; }
 
-  .footer { text-align: center; padding: 32px; font-size: 0.75rem; color: #ccc; }
+  .footer { text-align: center; padding: 32px; font-size: 0.72rem; color: var(--text-ghost); }
+  .footer a { color: var(--text-muted); text-decoration: none; }
+  .footer a:hover { color: var(--accent-red); }
+
+  /* DETAIL MODAL */
+  .modal-overlay {
+    position: fixed; top: 0; left: 0; right: 0; bottom: 0;
+    background: rgba(0,0,0,0.5); backdrop-filter: blur(4px);
+    z-index: 100; display: none; align-items: center; justify-content: center;
+    padding: 20px; animation: fadeIn 0.2s ease;
+  }
+  .modal-overlay.show { display: flex; }
+  .modal {
+    background: var(--surface); border-radius: var(--radius-lg); padding: 28px;
+    max-width: 560px; width: 100%; max-height: 80vh; overflow-y: auto;
+    box-shadow: var(--shadow-xl); position: relative;
+    animation: modalIn 0.25s ease;
+  }
+  @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+  @keyframes modalIn { from { opacity: 0; transform: scale(0.95) translateY(10px); } to { opacity: 1; transform: scale(1) translateY(0); } }
+  .modal-close {
+    position: absolute; top: 16px; right: 16px; width: 28px; height: 28px;
+    border: none; background: #f5f5f5; border-radius: 50%; cursor: pointer;
+    font-size: 1rem; color: var(--text-muted); display: flex; align-items: center; justify-content: center;
+    transition: background 0.15s;
+  }
+  .modal-close:hover { background: #e0e0e0; }
+  .modal-header { display: flex; align-items: center; gap: 12px; margin-bottom: 16px; }
+  .modal-icon { width: 42px; height: 42px; border-radius: 10px; display: flex; align-items: center; justify-content: center; font-size: 1.2rem; }
+  .modal-title { font-family: 'Red Hat Display', sans-serif; font-size: 1.2rem; font-weight: 800; }
+  .modal-subtitle { font-size: 0.78rem; color: var(--text-muted); font-weight: 500; }
+  .modal-desc { font-size: 0.84rem; color: var(--text-secondary); line-height: 1.6; margin-bottom: 20px; }
+  .modal-section-title { font-family: 'Red Hat Display', sans-serif; font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.5px; color: var(--text-muted); margin-bottom: 8px; }
+  .modal-commands { display: flex; flex-wrap: wrap; gap: 6px; margin-bottom: 20px; }
+  .modal-cmd {
+    font-family: 'Red Hat Mono', monospace; font-size: 0.72rem;
+    padding: 4px 10px; border-radius: 6px; background: #f5f5f5; border: 1px solid var(--border);
+    color: var(--accent-purple); font-weight: 500;
+  }
+  .modal-tags { display: flex; flex-wrap: wrap; gap: 4px; margin-bottom: 20px; }
+  .modal-tag { font-size: 0.68rem; padding: 2px 8px; border-radius: 4px; background: #f5f5f5; color: var(--text-muted); }
+  .modal-actions { display: flex; gap: 10px; }
+  .modal-btn {
+    font-family: 'Red Hat Display', sans-serif; font-size: 0.82rem; font-weight: 700;
+    padding: 10px 20px; border-radius: var(--radius-sm); cursor: pointer;
+    text-decoration: none; transition: all 0.15s; border: none;
+  }
+  .modal-btn--primary { background: var(--accent-red); color: #fff; }
+  .modal-btn--primary:hover { background: var(--accent-red-dark); }
+  .modal-btn--secondary { background: #f5f5f5; color: var(--text); border: 1px solid var(--border); }
+  .modal-btn--secondary:hover { background: #e8e8e8; }
+  .modal-install {
+    font-family: 'Red Hat Mono', monospace; font-size: 0.7rem;
+    background: #1a1a2e; color: #ccc; padding: 12px 14px; border-radius: var(--radius-sm);
+    margin-bottom: 20px; cursor: pointer; position: relative; transition: background 0.15s;
+  }
+  .modal-install:hover { background: #242445; }
+  .modal-install::after {
+    content: 'click to copy'; position: absolute; right: 10px; top: 50%; transform: translateY(-50%);
+    font-family: 'Red Hat Text', sans-serif; font-size: 0.6rem; color: #666;
+  }
 
   /* TOAST */
   .toast {
     position: fixed; bottom: 24px; left: 50%; transform: translateX(-50%) translateY(80px);
-    background: #212121; color: #fff; font-family: 'Red Hat Text', sans-serif;
+    background: var(--text); color: #fff; font-family: 'Red Hat Text', sans-serif;
     font-size: 0.82rem; padding: 10px 20px; border-radius: 10px;
-    box-shadow: 0 8px 24px rgba(0,0,0,0.2); z-index: 100;
+    box-shadow: var(--shadow-lg); z-index: 200;
     transition: transform 0.3s ease; pointer-events: none;
   }
   .toast.show { transform: translateX(-50%) translateY(0); }
@@ -207,7 +346,11 @@
     .start-here { flex-direction: column; }
     .start-here-actions { width: 100%; flex-direction: column; }
     .install-snippet { width: 100%; }
-    .stats { gap: 16px; }
+    .stats { gap: 12px; }
+    .stat { padding: 6px 12px; }
+    .role-bar { padding: 10px 14px; gap: 8px; }
+    .view-toggles { display: none; }
+    .modal { margin: 10px; padding: 20px; }
   }
 </style>
 </head>
@@ -254,9 +397,18 @@
     </div>
   </div>
 
+  <div class="role-bar">
+    <span class="role-bar-label">I'm a...</span>
+    <button class="role-btn active" data-role="all">Everyone</button>
+    <button class="role-btn" data-role="devrel">Developer Advocate</button>
+    <button class="role-btn" data-role="tmm">TMM</button>
+    <button class="role-btn" data-role="pmm">PMM / PM</button>
+    <button class="role-btn" data-role="engineer">Engineer</button>
+  </div>
+
   <div class="controls">
     <div class="search-wrap">
-      <input type="text" class="search-box" id="search" placeholder="Search tools..." autocomplete="off">
+      <input type="text" class="search-box" id="search" placeholder="Search tools, commands, tags..." autocomplete="off">
       <span class="search-hint">/</span>
     </div>
     <div class="filter-group" id="filters">
@@ -267,7 +419,12 @@
       <button class="filter-btn" data-filter="library">Library</button>
       <button class="filter-btn" data-filter="kit">Kit</button>
     </div>
+    <div class="view-toggles">
+      <button class="view-btn active" data-view="grid" title="Grid view">&#9638;</button>
+      <button class="view-btn" data-view="list" title="List view">&#9776;</button>
+    </div>
     <select class="sort-select" id="sort">
+      <option value="popular">Sort: Popular</option>
       <option value="name">Sort: A-Z</option>
       <option value="name-desc">Sort: Z-A</option>
       <option value="category">Sort: Category</option>
@@ -284,212 +441,264 @@
 
 </div>
 
-<div class="footer">AI BU Hub &middot; Red Hat</div>
+<div class="footer">AI BU Hub &middot; <a href="https://github.com/MarkellR-RedHat" target="_blank">Red Hat AI Business Unit</a></div>
 <div class="toast" id="toast"></div>
+
+<div class="modal-overlay" id="modal-overlay">
+  <div class="modal" id="modal"></div>
+</div>
 
 <script>
 var TOOLS = [
   {
     name: "Claude Code Commands",
-    desc: "Slash commands for release notes, changelogs, demo prep, customer explanations, competitive snapshots, blog drafting from PRs, and doc generation.",
+    desc: "The Swiss Army knife. Release notes, changelogs, demo prep, customer explanations, competitive snapshots, blog-from-PR, doc generation, project retrospectives, and a 'what should I work on next' prioritizer.",
     repo: "ai-bu-claude-commands",
     type: "command",
     typeBadge: "command",
     category: "Claude Code",
-    tags: ["release-notes", "demo-prep", "blog", "customer", "competitive", "changelog", "docs"],
+    tags: ["release-notes", "demo-prep", "blog", "customer", "competitive", "changelog", "docs", "retro", "prioritizer"],
     icon: ">_",
-    commands: 8
+    commands: 12,
+    popular: true,
+    cmdList: ["/release-notes", "/demo-prep", "/blog-from-pr", "/explain-for-customer", "/competitive-snapshot", "/changelog", "/write-docs", "/summarize-thread", "/what-next", "/draft-announcement", "/retro", "/tldr-repo"],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "MCP Server Kit",
-    desc: "One-command setup for GitHub, Fetch, Filesystem, Brave Search, and Memory MCP servers. Connects Claude Code to your repos, URLs, and local files.",
+    desc: "One-command setup for GitHub, Fetch, Filesystem, Brave Search, Memory, Kubernetes, and database MCP servers. Interactive installer detects your stack and configures only what you need.",
     repo: "ai-bu-mcp-server-kit",
     type: "config",
     typeBadge: "config",
     category: "Setup",
-    tags: ["mcp", "github", "fetch", "filesystem", "brave-search", "memory"],
+    tags: ["mcp", "github", "fetch", "filesystem", "brave-search", "memory", "kubernetes", "database"],
     icon: "⚙",
-    commands: 0
+    commands: 0,
+    popular: true,
+    cmdList: [],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "CLAUDE.md Templates",
-    desc: "Ready-to-use CLAUDE.md files for content writing, proposals, AI/ML, Kubernetes, Go, Python, Rust, Helm charts, and documentation repos.",
+    desc: "Drop-in CLAUDE.md files for Python, Go, Rust, Kubernetes, AI/ML, Helm, FastAPI, Operator SDK, data pipelines, CLIs, and more. Each template is written by someone who has spent years in that domain.",
     repo: "ai-bu-claude-md-templates",
     type: "config",
     typeBadge: "config",
     category: "Setup",
-    tags: ["claude-md", "templates", "config", "project-setup", "rust", "helm"],
+    tags: ["claude-md", "templates", "python", "go", "rust", "kubernetes", "fastapi", "operator", "helm"],
     icon: "📄",
-    commands: 0
+    commands: 2,
+    cmdList: ["/suggest-template", "/compose-template"],
+    roles: ["engineer", "devrel"]
   },
   {
     name: "Daily Briefing",
-    desc: "Morning standup prep from GitHub activity. Includes weekly digest and team pulse for leads. Shell aliases for quick PR and issue checks.",
+    desc: "Morning intelligence, not just activity logs. Priority-ranked briefings from GitHub, PTO catch-up mode, risk radar that spots warning signs, and forward-looking week-ahead forecasts.",
     repo: "ai-bu-daily-briefing",
     type: "command",
     typeBadge: "command",
     category: "Workflow",
-    tags: ["briefing", "standup", "github", "notifications", "daily", "weekly", "team"],
+    tags: ["briefing", "standup", "github", "risk", "pto", "catch-up", "forecast"],
     icon: "☀",
-    commands: 4
+    commands: 7,
+    popular: true,
+    cmdList: ["/briefing", "/standup", "/team-pulse", "/weekly-digest", "/catch-me-up", "/risk-radar", "/week-ahead"],
+    roles: ["devrel", "tmm", "engineer"]
   },
   {
     name: "Meeting Notes",
-    desc: "Paste rough notes, get structured decisions, action items with owners, follow-up emails, agenda generation, and decision logs.",
+    desc: "Structured decisions, action items with owners, RACI matrices, follow-up accountability checks, pre-meeting briefings, and a 'should this meeting be an email?' analyzer.",
     repo: "ai-bu-meeting-notes",
     type: "command",
     typeBadge: "command",
     category: "Workflow",
-    tags: ["meetings", "notes", "action-items", "email", "summary", "agenda", "decisions"],
+    tags: ["meetings", "notes", "action-items", "raci", "pre-brief", "accountability", "decisions"],
     icon: "📝",
-    commands: 6
+    commands: 10,
+    cmdList: ["/meeting-notes", "/action-items", "/agenda", "/decision-log", "/meeting-email", "/standup-notes", "/pre-brief", "/raci", "/follow-up-check", "/meeting-cancel"],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "Status Report",
-    desc: "Weekly, quarterly, and team status reports from git activity. OKR mapping and executive summaries for leadership updates.",
+    desc: "Reports that VPs forward to their bosses. Weekly and quarterly reports, OKR tracking, risk registers with 2x2 matrices, trend analysis with sparklines, and stakeholder-specific views.",
     repo: "ai-bu-status-report",
     type: "command",
     typeBadge: "command",
     category: "Workflow",
-    tags: ["status", "report", "weekly", "quarterly", "git", "okr", "executive", "team"],
+    tags: ["status", "report", "weekly", "quarterly", "okr", "risk", "trends", "stakeholder"],
     icon: "📊",
-    commands: 5
+    commands: 8,
+    cmdList: ["/status-report", "/executive-summary", "/okr-update", "/quarterly-review", "/team-report", "/status-trends", "/risk-register", "/stakeholder-view"],
+    roles: ["tmm", "pmm", "engineer"]
   },
   {
     name: "Review as Persona",
-    desc: "Review content as a CTO, SRE, developer, finance director, or solutions architect. Scoring rubric, multi-persona matrix, and rewrite mode.",
+    desc: "Uncannily accurate persona reviews. CTO, SRE, junior dev, security engineer, and 10+ more. Debate mode where two personas argue about your content. Red team and empathy map modes.",
     repo: "ai-bu-review-as-persona",
     type: "command",
     typeBadge: "command",
     category: "Content",
-    tags: ["review", "persona", "cto", "sre", "developer", "feedback", "rewrite"],
+    tags: ["review", "persona", "debate", "red-team", "empathy", "cto", "sre", "rewrite"],
     icon: "🎭",
-    commands: 4
+    commands: 8,
+    popular: true,
+    cmdList: ["/review-as", "/review-for-audience", "/review-multi", "/rewrite-for", "/debate", "/red-team", "/empathy-map", "/persona-builder"],
+    roles: ["devrel", "pmm", "tmm"]
   },
   {
     name: "Red Hat Style Checker",
-    desc: "Catches product name mistakes, tone issues, and jargon. Severity levels, style scoring, and tone analysis. 50+ Red Hat product names covered.",
+    desc: "Surgical precision style checking. 100+ product names, batch mode for whole directories, git diff mode for pre-PR checks, style learning, score comparison, and a comprehensive reference guide.",
     repo: "ai-bu-style-checker",
     type: "command",
     typeBadge: "command",
     category: "Content",
-    tags: ["style", "writing", "product-names", "red-hat", "review", "tone", "score"],
+    tags: ["style", "writing", "product-names", "red-hat", "batch", "diff", "score"],
     icon: "✓",
-    commands: 4
+    commands: 8,
+    popular: true,
+    cmdList: ["/style-check", "/style-fix", "/style-score", "/tone-check", "/style-batch", "/style-diff", "/style-learn", "/style-compare"],
+    roles: ["devrel", "pmm", "tmm"]
   },
   {
     name: "CFP Generator",
-    desc: "Conference talk proposals, workshop submissions, and lightning talk pitches. Blog-to-CFP conversion. Tailored to KubeCon, DevConf, and more.",
+    desc: "Proposals that get accepted. Reviewer simulation scores your abstract like a real committee. A/B testing generates two angles. Blog-to-talk and talk-to-blog converters. Workshop and lightning formats.",
     repo: "ai-bu-cfp-generator",
     type: "command",
     typeBadge: "command",
     category: "Content",
-    tags: ["cfp", "conference", "talk", "proposal", "abstract", "workshop", "lightning"],
-    icon: "🎤",
-    commands: 6
+    tags: ["cfp", "conference", "talk", "proposal", "reviewer", "ab-test", "workshop", "lightning"],
+    icon: "🎙",
+    commands: 9,
+    popular: true,
+    cmdList: ["/cfp", "/cfp-review", "/cfp-variants", "/cfp-from-blog", "/lightning-talk", "/workshop-proposal", "/cfp-reviewer", "/cfp-ab-test", "/talk-to-blog"],
+    roles: ["devrel", "tmm"]
   },
   {
     name: "Slide Outliner",
-    desc: "Presentation outlines with speaker notes, timing, and visuals. Marp export, narrative story mode, and doc-to-slides conversion. Templates included.",
+    desc: "Outlines so good that building slides is just filling in visuals. Pacing analysis, visual treatment suggestions with Mermaid diagrams, 5 alternative opening hooks, story mode, and Marp export.",
     repo: "ai-bu-slide-outliner",
     type: "command",
     typeBadge: "command",
     category: "Content",
-    tags: ["slides", "presentation", "speaker-notes", "outline", "marp", "story"],
+    tags: ["slides", "presentation", "pacing", "visuals", "hooks", "marp", "story", "speaker-notes"],
     icon: "💻",
-    commands: 6
+    commands: 9,
+    cmdList: ["/slides", "/slide-review", "/slide-notes", "/slide-to-marp", "/slide-story", "/slide-from-doc", "/slide-pacing", "/slide-visuals", "/slide-hooks"],
+    roles: ["devrel", "tmm", "pmm"]
   },
   {
     name: "Prompt Library",
-    desc: "26+ curated prompts organized by role: content, research, engineering, communication, and Dev Rel. Difficulty ratings and usage tips.",
+    desc: "40+ expert-engineered prompts across content, research, engineering, communication, strategy, leadership, and analysis. Multi-step prompt chains and a prompt engineering guide.",
     repo: "ai-bu-prompt-library",
     type: "library",
     typeBadge: "library",
     category: "Reference",
-    tags: ["prompts", "templates", "content", "engineering", "research", "communication"],
+    tags: ["prompts", "strategy", "leadership", "analysis", "chains", "engineering", "prompt-engineering"],
     icon: "📚",
-    commands: 0
+    commands: 0,
+    cmdList: [],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "Git Productivity Kit",
-    desc: "Shell aliases for logs, commit stats, dashboards, branch cleanup, PR creation, WIP commits, and safety hooks. 17+ commands included.",
+    desc: "30+ aliases and functions you will never work without again. Smart PR workflows, investigation tools, team dashboards, stale branch cleanup, conventional commit hooks, and shell completion.",
     repo: "ai-bu-git-productivity",
     type: "shell",
     typeBadge: "shell",
     category: "Developer Tools",
-    tags: ["git", "aliases", "shell", "productivity", "hooks", "dashboard"],
+    tags: ["git", "aliases", "shell", "hooks", "pr", "dashboard", "conventional-commits"],
     icon: "🔀",
-    commands: 17
+    commands: 30,
+    popular: true,
+    cmdList: ["gs", "glog", "gwip", "gunwip", "pr-create", "pr-ready", "pr-cleanup", "pr-stack", "gwho", "gwhen", "gfind", "gteam", "gstale", "greview"],
+    roles: ["engineer", "devrel"]
   },
   {
     name: "Message Polisher",
-    desc: "Polish emails and Slack messages, shorten to half length, format escalations, summarize threads, draft declines, and write follow-ups.",
+    desc: "Messages that sound like you on your best day. Read-the-room subtext analysis, tone shifting, bad news delivery with the BIFF framework, cross-cultural adaptation, and communication frameworks.",
     repo: "ai-bu-message-polisher",
     type: "command",
     typeBadge: "command",
     category: "Communication",
-    tags: ["email", "slack", "writing", "polish", "escalation", "thread", "follow-up"],
+    tags: ["email", "slack", "tone", "subtext", "cross-cultural", "bad-news", "frameworks"],
     icon: "✨",
-    commands: 6
+    commands: 10,
+    popular: true,
+    cmdList: ["/polish", "/shorten", "/decline-politely", "/escalation", "/follow-up", "/thread-summary", "/read-the-room", "/tone-shift", "/bad-news", "/cross-cultural"],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "Competitive Watch",
-    desc: "Track 10 competitor projects: vLLM, SGLang, TensorRT-LLM, Triton, BentoML, and more. Feature matrices and trend reports.",
+    desc: "Intelligence sharp enough for strategy meetings. Battlecard generator with counter-responses, SWOT analysis, positioning statements, win/loss analysis, and feature matrices with nuance.",
     repo: "ai-bu-competitive-watch",
     type: "command",
     typeBadge: "command",
     category: "Research",
-    tags: ["competitive", "vllm", "sglang", "landscape", "releases", "trends", "matrix"],
+    tags: ["competitive", "battlecard", "swot", "positioning", "win-loss", "landscape", "matrix"],
     icon: "🔭",
-    commands: 5
+    commands: 9,
+    cmdList: ["/whats-new", "/landscape", "/feature-matrix", "/diff-release", "/trend-report", "/battlecard", "/swot", "/positioning", "/win-loss"],
+    roles: ["pmm", "devrel", "tmm"]
   },
   {
     name: "Onboarding Kit",
-    desc: "One command to set everything up. Installs all commands, configures MCP servers, sets up git aliases. Includes cheatsheet and interactive walkthrough.",
+    desc: "The best setup experience you have ever had. Interactive installer with progress bars, health check dashboard, update mechanism, skill-based tool selection, and a 'your first 10 minutes' guide.",
     repo: "ai-bu-onboarding-kit",
     type: "kit",
     typeBadge: "kit",
     category: "Setup",
-    tags: ["onboarding", "setup", "install", "new-hire", "all-in-one", "cheatsheet"],
+    tags: ["onboarding", "setup", "install", "health-check", "update", "cheatsheet"],
     icon: "🚀",
-    commands: 0
+    commands: 0,
+    popular: true,
+    cmdList: [],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "Upstream Tracker",
-    desc: "Track 10 upstream projects including InstructLab and Podman AI. Weekly digests, breaking change alerts, contributor info, and contribution opportunities.",
+    desc: "Know what is coming before it lands. Impact analysis traces changes to your code, migration guide generation, project health scoring, release forecasting from open PRs and roadmap signals.",
     repo: "ai-bu-upstream-tracker",
     type: "command",
     typeBadge: "command",
     category: "Research",
-    tags: ["upstream", "vllm", "kubernetes", "kserve", "tracking", "instructlab", "contributors"],
+    tags: ["upstream", "impact", "migration", "health", "forecast", "kubernetes", "vllm", "instructlab"],
     icon: "⬆",
-    commands: 5
+    commands: 9,
+    cmdList: ["/upstream", "/upstream-weekly", "/upstream-breaking", "/upstream-contributor", "/upstream-opportunity", "/upstream-impact", "/upstream-migration", "/upstream-health", "/upstream-forecast"],
+    roles: ["engineer", "devrel"]
   },
   {
     name: "Shipped Digest",
-    desc: "Themed changelogs from merged PRs and releases. Slack-ready format, release notes generator, and shipping metrics. Stakeholder-ready.",
+    desc: "Digests that make teams proud of what they shipped. Narrative storytelling mode, celebration highlights with team shoutouts, sprint-over-sprint deltas, and stakeholder-specific formatting.",
     repo: "ai-bu-shipped-digest",
     type: "command",
     typeBadge: "command",
     category: "Workflow",
-    tags: ["changelog", "releases", "prs", "digest", "shipped", "slack", "metrics"],
+    tags: ["changelog", "narrative", "celebration", "delta", "shipped", "slack", "metrics"],
     icon: "📦",
-    commands: 6
+    commands: 9,
+    cmdList: ["/shipped", "/shipped-email", "/shipped-compare", "/shipped-slack", "/shipped-release-notes", "/shipped-metrics", "/shipped-narrative", "/shipped-celebration", "/shipped-delta"],
+    roles: ["devrel", "tmm", "pmm", "engineer"]
   },
   {
     name: "Speed Reader",
-    desc: "Structured summaries of papers and docs. Annotated reading, discussion questions, data extraction, and ELI5 mode. Handles PDFs and URLs.",
+    desc: "Summaries so insightful people share them instead of the original paper. Verdict mode, citation chain analysis, 'how would we use this' implementation plans, and methodology bias detection.",
     repo: "ai-bu-speed-reader",
     type: "command",
     typeBadge: "command",
     category: "Research",
-    tags: ["papers", "summary", "pdf", "research", "reading", "annotate", "eli5"],
+    tags: ["papers", "verdict", "citations", "implementation", "bias", "methodology", "eli5"],
     icon: "⚡",
-    commands: 7
+    commands: 11,
+    popular: true,
+    cmdList: ["/speedread", "/speedread-bullets", "/speedread-compare", "/speedread-annotate", "/speedread-questions", "/speedread-extract", "/speedread-eli5", "/speedread-verdict", "/speedread-chain", "/speedread-implement", "/speedread-bias"],
+    roles: ["engineer", "devrel", "tmm"]
   }
 ];
 
 var BASE_URL = "https://github.com/MarkellR-RedHat/";
+var currentView = 'grid';
+var currentRole = 'all';
 
 // Stats
 var totalCommands = TOOLS.reduce(function(s, t) { return s + t.commands; }, 0);
@@ -525,12 +734,18 @@ function render() {
 
   var filtered = TOOLS.filter(function(t) {
     if (activeFilter !== 'all' && t.type !== activeFilter) return false;
+    if (currentRole !== 'all' && t.roles && t.roles.indexOf(currentRole) === -1) return false;
     if (!query) return true;
-    var haystack = (t.name + ' ' + t.desc + ' ' + t.tags.join(' ') + ' ' + t.category).toLowerCase();
+    var haystack = (t.name + ' ' + t.desc + ' ' + t.tags.join(' ') + ' ' + t.category + ' ' + t.cmdList.join(' ')).toLowerCase();
     return haystack.indexOf(query) !== -1;
   });
 
   filtered.sort(function(a, b) {
+    if (sortBy === 'popular') {
+      if (a.popular && !b.popular) return -1;
+      if (!a.popular && b.popular) return 1;
+      return b.commands - a.commands || a.name.localeCompare(b.name);
+    }
     if (sortBy === 'name') return a.name.localeCompare(b.name);
     if (sortBy === 'name-desc') return b.name.localeCompare(a.name);
     if (sortBy === 'category') return a.category.localeCompare(b.category) || a.name.localeCompare(b.name);
@@ -552,22 +767,35 @@ function render() {
   noResults.style.display = 'none';
   count.textContent = filtered.length + (filtered.length === 1 ? ' tool' : ' tools');
 
+  grid.className = 'grid' + (currentView === 'list' ? ' grid--list' : '');
+
   var typeToCardClass = { command: 'card--commands', shell: 'card--workflow', config: 'card--setup', library: 'card--research', kit: 'card--content' };
   var typeToIconClass = { command: 'card-icon--commands', shell: 'card-icon--workflow', config: 'card-icon--setup', library: 'card-icon--research', kit: 'card-icon--content' };
 
   grid.innerHTML = filtered.map(function(t, i) {
     var cmdBadge = t.commands > 0 ? '<span class="cmd-count">' + t.commands + ' cmd' + (t.commands !== 1 ? 's' : '') + '</span>' : '';
-    return '<a class="card ' + (typeToCardClass[t.type] || '') + '" href="' + BASE_URL + t.repo + '" target="_blank" style="animation-delay:' + (i * 0.03) + 's">'
+    var popularBadge = t.popular ? '<span class="badge badge--popular">★</span>' : '';
+    var cmdPreview = '';
+    if (t.cmdList && t.cmdList.length > 0 && currentView === 'grid') {
+      var previewCmds = t.cmdList.slice(0, 6);
+      var moreCount = t.cmdList.length - 6;
+      cmdPreview = '<div class="card-commands-list">'
+        + previewCmds.map(function(c) { return '<span class="card-cmd">' + c + '</span>'; }).join('')
+        + (moreCount > 0 ? '<span class="card-cmd">+' + moreCount + ' more</span>' : '')
+        + '</div>';
+    }
+    return '<a class="card ' + (typeToCardClass[t.type] || '') + '" href="' + BASE_URL + t.repo + '" target="_blank" data-tool-idx="' + TOOLS.indexOf(t) + '" style="animation-delay:' + (i * 0.03) + 's">'
       + '<div class="card-top">'
       + '<div class="card-icon ' + (typeToIconClass[t.type] || '') + '">' + t.icon + '</div>'
-      + '<div class="card-badges"><span class="badge badge--' + t.typeBadge + '">' + t.typeBadge + '</span>' + cmdBadge + '</div>'
+      + '<div class="card-badges">' + popularBadge + '<span class="badge badge--' + t.typeBadge + '">' + t.typeBadge + '</span>' + cmdBadge + '</div>'
       + '</div>'
       + '<div class="card-title">' + highlightText(t.name, query) + '</div>'
       + '<div class="card-desc">' + highlightText(t.desc, query) + '</div>'
+      + cmdPreview
       + '<div class="card-tags">' + t.tags.slice(0, 5).map(function(tag) { return '<span class="card-tag">' + tag + '</span>'; }).join('') + '</div>'
       + '<div class="card-footer">'
       + '<span class="card-category">' + t.category + '</span>'
-      + '<span class="card-link">GitHub <span class="card-link-arrow">&rarr;</span></span>'
+      + '<span class="card-link">View <span class="card-link-arrow">&rarr;</span></span>'
       + '</div>'
       + '</a>';
   }).join('');
@@ -584,20 +812,45 @@ document.querySelectorAll('.filter-btn').forEach(function(btn) {
   });
 });
 
-// Keyboard shortcut: / to focus search
+// Role buttons
+document.querySelectorAll('.role-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.role-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentRole = btn.dataset.role;
+    render();
+  });
+});
+
+// View toggle
+document.querySelectorAll('.view-btn').forEach(function(btn) {
+  btn.addEventListener('click', function() {
+    document.querySelectorAll('.view-btn').forEach(function(b) { b.classList.remove('active'); });
+    btn.classList.add('active');
+    currentView = btn.dataset.view;
+    render();
+  });
+});
+
+// Keyboard shortcuts
 document.addEventListener('keydown', function(e) {
   if (e.key === '/' && document.activeElement.tagName !== 'INPUT') {
     e.preventDefault();
     document.getElementById('search').focus();
   }
   if (e.key === 'Escape') {
+    var modal = document.getElementById('modal-overlay');
+    if (modal.classList.contains('show')) {
+      modal.classList.remove('show');
+      return;
+    }
     document.getElementById('search').blur();
     document.getElementById('search').value = '';
     render();
   }
 });
 
-// Copy install snippet
+// Toast
 function showToast(msg) {
   var t = document.getElementById('toast');
   t.textContent = msg;
@@ -605,6 +858,7 @@ function showToast(msg) {
   setTimeout(function() { t.classList.remove('show'); }, 2000);
 }
 
+// Copy install snippet
 document.getElementById('install-copy').addEventListener('click', function() {
   var text = 'git clone https://github.com/MarkellR-RedHat/ai-bu-onboarding-kit.git && cd ai-bu-onboarding-kit && ./setup.sh';
   navigator.clipboard.writeText(text).then(function() {
@@ -612,6 +866,54 @@ document.getElementById('install-copy').addEventListener('click', function() {
     document.getElementById('install-copy').classList.add('copied');
     setTimeout(function() { document.getElementById('install-copy').classList.remove('copied'); }, 2000);
   });
+});
+
+// Modal on right-click or long-press
+document.getElementById('grid').addEventListener('contextmenu', function(e) {
+  var card = e.target.closest('.card');
+  if (!card) return;
+  e.preventDefault();
+  var idx = parseInt(card.dataset.toolIdx);
+  if (isNaN(idx)) return;
+  showModal(TOOLS[idx]);
+});
+
+function showModal(t) {
+  var typeToIconClass = { command: 'card-icon--commands', shell: 'card-icon--workflow', config: 'card-icon--setup', library: 'card-icon--research', kit: 'card-icon--content' };
+  var modal = document.getElementById('modal');
+  var cmdsHtml = '';
+  if (t.cmdList && t.cmdList.length > 0) {
+    cmdsHtml = '<div class="modal-section-title">Available Commands (' + t.cmdList.length + ')</div>'
+      + '<div class="modal-commands">' + t.cmdList.map(function(c) { return '<span class="modal-cmd">' + c + '</span>'; }).join('') + '</div>';
+  }
+  var installCmd = 'git clone ' + BASE_URL + t.repo + '.git && cd ' + t.repo + ' && bash install.sh';
+  modal.innerHTML = '<button class="modal-close" id="modal-close">&times;</button>'
+    + '<div class="modal-header">'
+    + '<div class="modal-icon ' + (typeToIconClass[t.type] || '') + '">' + t.icon + '</div>'
+    + '<div><div class="modal-title">' + t.name + '</div><div class="modal-subtitle">' + t.category + '</div></div>'
+    + '</div>'
+    + '<div class="modal-desc">' + t.desc + '</div>'
+    + cmdsHtml
+    + '<div class="modal-section-title">Quick Install</div>'
+    + '<div class="modal-install" id="modal-install-cmd">' + installCmd + '</div>'
+    + '<div class="modal-section-title">Tags</div>'
+    + '<div class="modal-tags">' + t.tags.map(function(tag) { return '<span class="modal-tag">' + tag + '</span>'; }).join('') + '</div>'
+    + '<div class="modal-actions">'
+    + '<a href="' + BASE_URL + t.repo + '" target="_blank" class="modal-btn modal-btn--primary">View on GitHub</a>'
+    + '<a href="' + BASE_URL + t.repo + '#readme" target="_blank" class="modal-btn modal-btn--secondary">Read Docs</a>'
+    + '</div>';
+
+  document.getElementById('modal-overlay').classList.add('show');
+  document.getElementById('modal-close').addEventListener('click', function() {
+    document.getElementById('modal-overlay').classList.remove('show');
+  });
+  document.getElementById('modal-install-cmd').addEventListener('click', function() {
+    navigator.clipboard.writeText(installCmd).then(function() { showToast('Install command copied'); });
+  });
+}
+
+document.getElementById('modal-overlay').addEventListener('click', function(e) {
+  if (e.target === this) this.classList.remove('show');
 });
 
 render();
